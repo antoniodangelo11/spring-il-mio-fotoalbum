@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/resources :: headResources('Create Photo')"></head>
+<body class="bg-dark">
+<nav th:replace="fragments/navbar :: topNavbar('photos')"></nav>
+<div class="container">
+    <h1 class="text-light">Create Photo</h1>
+    <hr>
+    <form
+            id="photo-create"
+            method="POST"
+            th:action="@{/photos/create}"
+            th:object="${photo}"
+            class="row gy-2 text-light"
+    >
+        <div class="col-6"
+             th:insert="fragments/components :: formField('text', 'Title', 'title')">
+
+        </div>
+
+        <div class="col-4" th:insert="fragments/components :: formField('text', 'Photo', 'url')">
+
+        </div>
+
+        <div class="col-2"
+             th:insert="fragments/components :: formField('ratio', 'Visible', 'visible')">
+
+        </div>
+
+        <div class="col-12">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="5" th:field="*{description}"></textarea>
+            <div
+                    th:if="${#fields.hasErrors('description')}"
+                    th:errors="*{description}" class="alert alert-danger">
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a th:href="@{/photos}" class="btn btn-primary">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
