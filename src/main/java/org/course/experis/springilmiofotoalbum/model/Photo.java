@@ -27,7 +27,7 @@ public class Photo {
     @Size(max = 255, message = "Length must be less than 255")
     private String url;
 
-    private boolean visible;
+    private boolean visible = true;
 
     @ManyToMany
     @JoinTable(
