@@ -24,7 +24,7 @@ public class PhotoService {
 
         if (search.isPresent()) {
             return
-                    photoRepository.findByNameContainingIgnoreCase(search.get());
+                    photoRepository.findByTitleContainingIgnoreCase(search.get());
         } else {
             return photoRepository.findAll();
         }
@@ -52,7 +52,9 @@ public class PhotoService {
         photoToEdit.setTitle(photo.getTitle());
         photoToEdit.setDescription(photo.getDescription());
         photoToEdit.setUrl(photo.getUrl());
+        photoToEdit.setVisible(photo.isVisible());
         photoToEdit.setCategories(photo.getCategories());
+
         return photoRepository.save(photoToEdit);
     }
 
