@@ -28,7 +28,6 @@
              th:insert="fragments/components :: formField('text', 'Url', 'url')">
         </div>
         <div class="col">
-            <!-- categories-->
             <h3>Categories</h3>
             <div class="form-group">
                 <div class="row">
@@ -54,7 +53,8 @@
             </textarea>
             <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
                 <ul class="list-group-item disabled ms-2">
-                    <li th:each="err : ${#fields.errors('description')}" th:text="${err}" class="list-group-item disabled"></li>
+                    <li th:each="err : ${#fields.errors('description')}"
+                        th:text="${err}" class="list-group-item disabled"></li>
                 </ul>
             </div>
         </div>

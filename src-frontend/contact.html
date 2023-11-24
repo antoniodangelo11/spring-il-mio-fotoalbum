@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +11,24 @@
     <script src="search.js" defer></script>
     <title>Spring Photo</title>
 </head>
+
 <body class="bg-dark text-light">
 
     <div class="container">
-        <h1>Spring Photo</h1>
-        <button type="button" class="btn btn-primary mb-2">
-            <a href="contact.html" class="text-decoration-none text-light">Contact</a>
-        </button>
-
-        <div class="col-12 mt-2">
-            <div class="d-flex">
-                <input type="text" class="form-control rounded-end-0" id="searchBar">
-                <button class="btn btn-primary rounded-start-0" id="searchButton">
-                    Search
-                </button>
+        <form>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
-        </div>
-
-        <div id="root" class="mt-4"></div>
+            <div class="form-group">
+                <label for="Message">Message</label>
+                <input type="text" class="form-control" id="Message" placeholder="Message">
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </body>
 </html>

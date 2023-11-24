@@ -48,7 +48,7 @@ const renderPhotoList = (data) => {
   if (data.length > 0) {
     content = '<div class="row">';
     data.forEach((element) => {
-      content += '<div class="col-3">';
+      content += '<div class="col-3 mb-4">';
       content += renderPhoto(element);
       content += "</div>";
     });

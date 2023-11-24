@@ -44,7 +44,7 @@ public class CategoryService {
     public void deleteCategory (Integer id) {
         Category categoryDelete = getCategoryById(id);
         List<Photo> photos = categoryDelete.getPhotos();
-        if (photos.size() > 0){
+        if (!photos.isEmpty()){
             for (Photo photo : photos){
                 List <Category> categories = photo.getCategories();
                 categories.remove(categoryDelete);
