@@ -13,6 +13,7 @@ public class Category {
     private int id;
     @NotBlank(message = "Name must not be blank")
     @Size(max = 255, message = "Length must be less than 255")
+    @Column(nullable = false, unique = true)
     private String name;
 
     public int getId() {

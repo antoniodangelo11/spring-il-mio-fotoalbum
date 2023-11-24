@@ -47,11 +47,11 @@ public class CategoryController {
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         try {
-            Category categoryToDelete = categoryService.getCategoryById(id);
-            categoryService.deleteCategory(id);
+            Category deleteCategory = categoryService.getCategoryById(id);
+            categoryService.deleteCategory(deleteCategory, id);
             redirectAttributes.addFlashAttribute(
                     "message",
-                    "The " + categoryToDelete.getName() + " deleted!");
+                    "The " + deleteCategory.getName() + " deleted!");
             return "redirect:/categories";
         } catch (CategoryNameUniqueException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

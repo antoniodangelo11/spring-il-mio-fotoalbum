@@ -1,6 +1,5 @@
 package org.course.experis.springilmiofotoalbum.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -21,19 +20,18 @@ public class Photo {
     private String title;
 
     @NotBlank(message = "Description must not be blank")
+    @Size(max = 1255, message = "Length must be less than 1255")
+    @Column(length = 1255)
     private String description;
 
     @NotBlank(message = "Photo must not be blank")
-    @Size(max = 255, message = "Length must be less than 255")
+    @Size(max = 2500, message = "Length must be less than 2500")
+    @Column(length = 2500)
     private String url;
 
     private boolean visible = true;
 
-    @ManyToMany
-    @JoinTable(
-            name = "photo_category",
-            joinColumns = @JoinColumn(name = "photo_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Category> categories;
 
 
