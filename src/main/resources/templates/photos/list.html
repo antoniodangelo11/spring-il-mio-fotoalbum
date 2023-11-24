@@ -21,7 +21,7 @@
         </div>
     </div>
     <hr>
-    <div class="my-3">
+    <div class="my-3" sec:authorize="hasAuthority('ADMIN')">
         <a th:href="@{/photos/create}" class="btn btn-primary">Add new photo</a>
     </div>
     <div class="d-flex flex-wrap justify-content-center">
@@ -39,7 +39,7 @@
                             Details
                         </a>
                     </button>
-                    <button class="btn btn-secondary mx-1">
+                    <button class="btn btn-secondary mx-1" sec:authorize="hasAuthority('ADMIN')">
                         <a th:href="@{photos/edit/{id}(id=*{id})}" class="text-light text-decoration-none">
                             Edit
                         </a>
@@ -49,7 +49,7 @@
                             th:action="@{photos/delete/{id}(id=*{id})}"
                             onsubmit="return confirm('Are you sure?')"
                     >
-                        <button type="submit" class="btn btn-danger mx-1">
+                        <button type="submit" class="btn btn-danger mx-1" sec:authorize="hasAuthority('ADMIN')">
                             Delete
                         </button>
                     </form>
