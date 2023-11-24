@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head th:insert="/fragments/resources :: headResources('Photo Details')"></head>
+<body class="bg-dark">
+<nav th:replace="fragments/navbar :: topNavbar('photos')"></nav>
+<div class="container border-light text-light mt-3" th:object="${photo}">
+    <section>
+        <h1 th:text ="*{title}">>Photo Details</h1>
+        <div class="d-flex">
+            <img th:src="*{url}" alt="" class="d-block w-50 h-50 rounded-4">
+            <div class="ms-5">
+                <h3>Categories</h3>
+                <ul th:if="*{categories.size() > 0}">
+                    <li th:each="categoryObj : *{categories}" th:text="${categoryObj.name}"></li>
+                </ul>
+                <div th:unless="*{categories.size() > 0}" class="alert alert-info">The list is empty</div>
+            </div>
+        </div>
+        <hr>
+        <dl>
+            <dt>Description</dt>
+            <dd th:text ="*{description}"></dd>
+        </dl>
+
+    </section>
+    <a th:href="@{/photos}"  class="btn btn-primary">Back to List</a>
+
+</div>
+</body>
+</html>

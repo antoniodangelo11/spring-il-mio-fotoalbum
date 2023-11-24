@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head th:insert="/fragments/resources :: headResources('Photo List')"></head>
+<body class="bg-dark text-light">
+<nav th:replace="fragments/navbar :: topNavbar('photos')"></nav>
+<div class="container border-light mt-3" th:if="${photoList.size() > 0}">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+            <h1>Photo List</h1>
+            <form th:action="@{/photos}" method="GET" class="w-50">
+                <div class="input-group">
+                    <input
+                            type="text"
+                            placeholder="Search by name"
+                            class="form-control" name="search"
+                            th:value="${param.search}"
+                    >
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="my-3">
+        <a th:href="@{/photos/create}" class="btn btn-primary">Add new photo</a>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center">
+        <div th:each="photo : ${photoList}" th:object="${photo}" class="m-0 w-25 my-2">
+            <div class="card bg-dark text-light border-2 border-secondary h-100 mx-2 ">
+                <img th:src="*{url}" class="card-img-top object-fit-cover" alt="..." style="height: 300px;">
+                <div class="card-body">
+                    <h5 th:text="*{title}" class="card-title"></h5>
+                    <p th:text="*{description}" class="card-text"></p>
+
+                </div>
+                <div class="card-body d-flex align-items-end">
+                    <button class="btn btn-primary mx-1">
+                        <a th:href="@{photos/show/{id}(id=*{id})}" class="text-light text-decoration-none">
+                            Details
+                        </a>
+                    </button>
+                    <button class="btn btn-secondary mx-1">
+                        <a th:href="@{photos/edit/{id}(id=*{id})}" class="text-light text-decoration-none">
+                            Edit
+                        </a>
+                    </button>
+                    <form
+                            method="POST"
+                            th:action="@{photos/delete/{id}(id=*{id})}"
+                            onsubmit="return confirm('Are you sure?')"
+                    >
+                        <button type="submit" class="btn btn-danger mx-1">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:unless="${photoList.size() > 0}" class="container mt-2"><h1>No results</h1></div>
+</body>
+</html>
