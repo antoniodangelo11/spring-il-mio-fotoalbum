@@ -1,8 +1,12 @@
 INSERT INTO roles (id, name) VALUES(1, 'ADMIN');
+INSERT INTO roles (id, name) VALUES(2, 'USER');
 
 INSERT INTO users (email, first_name, last_name, registered_at, password) VALUES('antonio@email.com', 'Antonio', 'Rossi', '2023-11-23 09:00', '{noop}antonio');
+INSERT INTO users (email, first_name, last_name, registered_at, password) VALUES('valeria@email.com', 'Valeria', 'Bianchi', '2023-11-20 16:20','{noop}jane');
 
 INSERT INTO users_roles (user_id, roles_id) VALUES(1, 1);
+INSERT INTO users_roles (user_id, roles_id) VALUES(1, 2);
+INSERT INTO users_roles (user_id, roles_id) VALUES(2, 2);
 
 INSERT INTO photos (title, description, url, visible) VALUES ('Roma', 'Capitale Italia', 'https://www.turismoroma.it/sites/default/files/fontana_trevi_0.jpg', true);
 INSERT INTO photos (title, description, url, visible) VALUES ('Berlino', 'Capitale della Germania', 'https://www.travel365.it/foto/brandenburgertor-berlino-2.jpg', true);
@@ -20,11 +24,11 @@ INSERT INTO categories(name) VALUES('Arte');
 INSERT INTO categories(name) VALUES('Intrattenimento');
 INSERT INTO categories(name) VALUES('Alimenti');
 
-INSERT INTO photos_categories(photo_id, categories_id) VALUES(2,1);
-INSERT INTO photos_categories(photo_id, categories_id) VALUES(1,1);
-INSERT INTO photos_categories(photo_id, categories_id) VALUES(3,2);
-INSERT INTO photos_categories(photo_id, categories_id) VALUES(4,5);
-INSERT INTO photos_categories(photo_id, categories_id) VALUES(5,3);
-INSERT INTO photos_categories(photo_id, categories_id) VALUES(6,6);
-INSERT INTO photos_categories(photo_id, categories_id) VALUES(7,4);
-INSERT INTO photos_categories(photo_id, categories_id) VALUES(8,2);
+INSERT INTO photos_categories(photos_id, categories_id) VALUES(2,1);
+INSERT INTO photos_categories(photos_id, categories_id) VALUES(1,1);
+INSERT INTO photos_categories(photos_id, categories_id) VALUES(3,2);
+INSERT INTO photos_categories(photos_id, categories_id) VALUES(4,5);
+INSERT INTO photos_categories(photos_id, categories_id) VALUES(5,3);
+INSERT INTO photos_categories(photos_id, categories_id) VALUES(6,6);
+INSERT INTO photos_categories(photos_id, categories_id) VALUES(7,4);
+INSERT INTO photos_categories(photos_id, categories_id) VALUES(8,2);
