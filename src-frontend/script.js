@@ -1,92 +1,76 @@
-/* COSTANTI*/
 const apiUrl = "http://localhost:8080/api/v1/photos";
 const root = document.getElementById("root");
 
-/* FUNZIONI */
-const renderCategories = (categories) => {
-  console.log(categories);
-  let content;
+//Inizializzo la card
+const cardPhoto = (element) => {
 
-  // Aggiungi la verifica se 'categories' è definito
-  if (categories && categories.length === 0) {
-    content = "No categories";
-  } else if (categories) {
-    // Aggiungi la verifica se 'categories' è definito
-    content = '<ul class="list-unstyled">';
-    categories.forEach((cat) => {
-      content += `<li>${cat.name}</li>`;
-    });
-    content += "</ul>";
-  } else {
-    content = "Categories is undefined";
-  }
-
-  return content;
-};
-
-
-const renderPhoto = (element) => {
   console.log(element);
-  return `<div class="card shadow h-100">
-    <div class="card-body">
-      <h5 class="card-title">${element.title}</h5>
-      <p class="card-text">${
-        element.description != "" ? element.description : "N.D."
-      }</p>
-      <div>
-          <img class="h-100 w-100" src="${element.url}" alt="">
-      </div>
-    </div>
-    <div class="card-footer">${renderCategories(element.categories)}</div>
-  </div>`;
+  return `<div class="card bg-dark text-light border-2                  border-secondary h-100">
+        <img src=${
+          element.url
+        } class="card-img-top object-fit-cover" alt="..." style="height: 300px;">
+        <div class="card-body">
+            <h5 class="card-title">${element.title}</h5>
+            <p class="card-text">${element.description}</p>
+        </div>
+        <div class="list-group list-group-flush">
+            <div class="list-group-item bg-dark text-light border-secondary">
+                <span class="fw-semibold text-info"> 
+                    Category 
+                </span>
+                <span>
+                    ${renderCategories(element.categories)}
+                </span>
+            </div>
+        </div>
+    </div>`;
 };
 
-
-const renderPhotoList = (data) => {
+//Inizializzo la lista delle card
+const photoList = (data) => {
   let content;
   console.log(data);
+  // condizioni
   if (data.length > 0) {
     content = '<div class="row">';
+
     data.forEach((element) => {
       content += '<div class="col-3 mb-4">';
-      content += renderPhoto(element);
+      content += cardPhoto(element);
       content += "</div>";
     });
-    content += "</div>";
   } else {
     content = '<div class="alert alert-info">The list is empty</div>';
   }
+  // sostituisco il contenuto di root con il mio content
   root.innerHTML = content;
 };
 
+// funzione che chiama l'api e ottiene il json con l'array di pizzas
 
-const getPhotos = async () => {
+const getPhoto = async () => {
   try {
     const response = await axios.get(apiUrl);
-    renderPhotoList(response.data);
+    photoList(response.data);
   } catch (error) {
     console.log(error);
   }
 };
 
-const deletePhoto = async (photoId) => {
-  try {
-    const response = await fetch(`${apiUrl}/${photoId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+// funzione che renderizza le categorie del book
+const renderCategories = (categories) => {
+  console.log(categories);
+  let content;
+  if (categories.length === 0) {
+    content = "No categories";
+  } else {
+    content = '<ul class="list-unstyled">';
+    categories.forEach((cat) => {
+      content += `<li>${cat.name}</li>`;
     });
-
-    if (!response.ok) {
-        throw new Error(`Errore durante la cancellazione della photo con ID ${photoId}`);
-    }
-
-    console.log(`Photo con ID ${photoId} eliminata con successo`);
-    location.reload();
-  } catch (error) {
-    console.error(error.message);
-}
+    content += "</ul>";
+  }
+  return content;
 };
 
-getPhotos();
+getPhoto();

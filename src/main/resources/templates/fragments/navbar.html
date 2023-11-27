@@ -3,7 +3,8 @@
 <nav th:fragment="topNavbar(area)" class="navbar navbar-expand-lg bg-grey navbar-dark border-bottom border-light">
 
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/photos}">Spring </a><div><img src="/logo.jpeg" alt="" style="height:50px"></div>
+        <a class="navbar-brand" th:href="@{/photos}">PhotoBook
+        </a><div><img src="/logo.jpeg" alt="" style="height:50px"></div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -12,6 +13,12 @@
 
         <div class="collapse navbar-collapse ps-4" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+                    <a class="nav-link" th:classAppend="${area == 'users' ? 'active' : ''}"
+                       th:href="@{/users}">
+                        Users
+                    </a>
+                </li>
                 <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                     <a class="nav-link" th:classAppend="${area == 'photos' ? 'active' : ''}"
                        th:href="@{/photos}">Photos
@@ -24,12 +31,11 @@
                     </a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
-                    <a class="nav-link" th:classAppend="${area == 'users' ? 'active' : ''}"
-                       th:href="@{/users}">
-                        Users
+                    <a class="nav-link" th:classAppend="${area == 'contacts' ? 'active' : ''}"
+                       th:href="@{/contacts}" sec:authorize="hasAuthority('ADMIN')">
+                        Contacts
                     </a>
                 </li>
-
             </ul >
             <div class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item d-flex justify-content-end">

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/fragments/resources :: headResources('Contacts')"></head>
+<body class="bg-dark">
+<nav th:replace="fragments/navbar :: topNavbar('contact')"></nav>
+<div class="container border-light text-light mt-3">
+    <div class="container">
+        <div>
+            <h1>Contacts</h1>
+        </div>
+        <hr>
+        <div th:if="${contact != null}" class="alert alert-success alert-dismissible fade show">
+            <span th:text="${contact}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <table class="border-bottom border-secondary table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contact : ${contactList}" th:object="${contact}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{email}"></td>
+                <td>
+                    <div class=" d-flex align-items-center">
+                        <button class="btn btn-primary mx-1">
+                            <a th:href="@{contacts/show/{id}(id=*{id})}" class="text-light text-decoration-none">
+                                Details
+                            </a>
+                        </button>
+                        <form method="POST" th:action="@{contacts/delete/{id}(id=*{id})}"
+                              onsubmit="return confirm('Are you sure?')"
+                        >
+                            <button type="submit" class="btn btn-danger mx-1">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -2,6 +2,7 @@ package org.course.experis.springilmiofotoalbum.controller.api;
 
 import org.course.experis.springilmiofotoalbum.exceptions.PhotoNotFoundException;
 import org.course.experis.springilmiofotoalbum.model.Photo;
+import org.course.experis.springilmiofotoalbum.service.ContactService;
 import org.course.experis.springilmiofotoalbum.service.PhotoService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -32,9 +33,12 @@ public class PhotoRestController {
     @Autowired
     private PhotoService photoService;
 
+    @Autowired
+    private ContactService contactService;
+
     @GetMapping
-    public List<Photo> index(@RequestParam Optional<String> search) {
-        return photoService.getPhotoList(search);
+    public List<Photo> index (@RequestParam Optional<String> search){
+        return photoService.getPhotoVisibility(search);
     }
 
     @GetMapping("/{id}")

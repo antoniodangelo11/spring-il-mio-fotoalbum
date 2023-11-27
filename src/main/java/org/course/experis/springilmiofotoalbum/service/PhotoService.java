@@ -71,4 +71,17 @@ public class PhotoService {
     public Page<Photo> getPage(Pageable pageable) {
         return photoRepository.findAll(pageable);
     }
+
+    public List<Photo> getPhotoVisibility(Optional<String> search){
+        if(search.isPresent()){
+            return photoRepository.findByVisibleAndTitleContainingIgnoreCase(true, search.get());
+        }
+        else {
+            return photoRepository.findByVisible(true);
+        }
+    }
+
+    public List<Photo> getPhotoList() {
+        return photoRepository.findAll();
+    }
 }

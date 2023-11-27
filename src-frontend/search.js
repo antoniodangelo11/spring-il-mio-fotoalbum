@@ -16,6 +16,7 @@ function searchPhotos() {
       return response.json();
     })
     .then((data) => {
+      // Filtra le photo in base al nome
       const filteredPhotos = data.filter((photo) =>
         photo.title.toLowerCase().includes(searchPhoto)
       );
@@ -34,7 +35,7 @@ function updatePhotoList(data) {
     let content = '<div class="row">';
     data.forEach((element) => {
       content += '<div class="col-3 mb-4">';
-      content += renderPhoto(element);
+      content += cardPhoto(element);
       content += "</div>";
     });
     content += "</div>";

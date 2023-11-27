@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/fragments/resources :: headResources('Users')"></head>
+<body class="bg-dark">
+<nav th:replace="fragments/navbar :: topNavbar('users')"></nav>
+<div class="container border-light text-light mt-3">
+    <div class="container">
+        <div>
+            <h1>Users</h1>
+        </div>
+        <hr>
+        <table class="border-bottom border-secondary table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Register At</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${userList}" th:object="${user}">
+                <td th:text="*{firstName}"></td>
+                <td th:text="*{lastName}"></td>
+                <td th:text="*{email}"></td>
+                <td th:text="*{#temporals.format(registeredAt, 'dd-MM-yyyy')}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

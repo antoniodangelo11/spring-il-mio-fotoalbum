@@ -29,7 +29,7 @@ public class Photo {
     @Column(length = 2500)
     private String url;
 
-    private boolean visible = true;
+    private boolean visible = false;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Category> categories;

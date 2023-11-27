@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head th:insert="/fragments/resources :: headResources('Contact Details')"></head>
+<body class="bg-dark">
+<nav th:replace="fragments/navbar :: topNavbar('photos')"></nav>
+<div class="container border-light text-light mt-3" th:object="${contact}">
+    <section>
+        <h1>Contact Details</h1>
+        <hr>
+        <dl>
+            <dt>Email</dt>
+            <dd th:text ="*{email}"></dd>
+            <dt>Description</dt>
+            <dd th:text ="*{message}"></dd>
+        </dl>
+
+    </section>
+    <a th:href="@{/contacts}"  class="btn btn-primary">Back to List</a>
+
+</div>
+</body>
+</html>
