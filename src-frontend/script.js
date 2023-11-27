@@ -5,7 +5,7 @@ const root = document.getElementById("root");
 const cardPhoto = (element) => {
 
   console.log(element);
-  return `<div class="card bg-dark text-light border-2                  border-secondary h-100">
+  return `<div class="card bg-dark text-light border-2 border-secondary h-100">
         <img src=${
           element.url
         } class="card-img-top object-fit-cover" alt="..." style="height: 300px;">
@@ -15,9 +15,6 @@ const cardPhoto = (element) => {
         </div>
         <div class="list-group list-group-flush">
             <div class="list-group-item bg-dark text-light border-secondary">
-                <span class="fw-semibold text-info"> 
-                    Category 
-                </span>
                 <span>
                     ${renderCategories(element.categories)}
                 </span>
