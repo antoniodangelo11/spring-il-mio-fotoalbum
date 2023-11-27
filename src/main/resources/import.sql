@@ -14,7 +14,7 @@ INSERT INTO photos (title, description, url, visible) VALUES ('Casa sul Mare', '
 INSERT INTO photos (title, description, url, visible) VALUES ('Peluche', 'Giocattolo per bambini', 'https://www.getdigital.de/web/img/products/1100x1100/1992719927KuschelTotoroMain.220426.webp', true);
 INSERT INTO photos (title, description, url, visible) VALUES ('Personal Computer', 'Apparecchio per lavoro e svago','https://www.messoanuovo.it/wp-content/uploads/2021/12/PC-gaming-scaled.jpg', true);
 INSERT INTO photos (title, description, url, visible) VALUES ('Bibita', 'Energy drink', 'https://m.media-amazon.com/images/I/51mu5G4SAHL._AC_UF894,1000_QL80_.jpg', true);
-INSERT INTO photos (title, description, url, visible) VALUES ('La Gioconda', 'Opera conosciuta in tutto il mondo', 'https://cdn.studenti.stbm.it/images/2017/01/10/gioconda-orig.jpeg', false);
+INSERT INTO photos (title, description, url, visible) VALUES ('La Gioconda', 'Opera conosciuta in tutto il mondo', 'https://cdn.studenti.stbm.it/images/2017/01/10/gioconda-orig.jpeg', true);
 INSERT INTO photos (title, description, url, visible) VALUES ('Mar Mediterraneo', 'Mare che confina con le coste africane', 'https://ilbolive.unipd.it/sites/default/files/styles/style_1120x630/public/2021-01/mar-mediterraneo-costa.jpg?itok=zX1jZpYJ', true);
 
 INSERT INTO categories(name) VALUES('Città');
